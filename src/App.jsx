@@ -3,6 +3,7 @@ import { nanoid } from "nanoid";
 import Confetti from 'react-confetti';
 import Dice from "./components/Dice"
 import Stats from "./components/Stats";
+import NewBest from "./components/NewBest"
 
 function App() {
   //Core gameplay
@@ -14,6 +15,13 @@ function App() {
 
   //Time
   const [isRunning, setIsRunning]= React.useState(true);
+
+  //New Best splash screen
+  const [newBest, setNewBest]=React.useState(false);
+
+  function toggleNewBest(){
+    setNewBest(prevNewBest => !prevNewBest)
+  }
 
   //Check if game is won
   React.useEffect(()=>{
@@ -56,6 +64,9 @@ function App() {
 
   return (
     <div className="App">
+      {newBest && <NewBest
+       toggleNewBest={toggleNewBest}
+      />}
       <main>
         {tenzies && <Confetti/>}
         <div className="App--info">
@@ -69,7 +80,7 @@ function App() {
         </div>
         <Stats
           rolls={rolls}
-          // time={time}
+          toggleNewBest={toggleNewBest}
           isRunning={isRunning}
         />
         <div className="App--die">

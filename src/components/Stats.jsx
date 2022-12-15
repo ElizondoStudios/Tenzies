@@ -1,6 +1,7 @@
 import React from "react";
 import Time from "./Time";
 
+
 function Stats(props){
     const [bestTime, setBestTime]= React.useState();
 
@@ -20,7 +21,11 @@ function Stats(props){
                 Rolls: <p>{props.rolls}</p>
             </h4>
             <h4>
-                Time: <Time isRunning={props.isRunning} bestTime={bestTime}/>
+                Time: <Time
+                 isRunning={props.isRunning}
+                 bestTime={bestTime}
+                 toggleNewBest={props.toggleNewBest}
+                 />
             </h4>
             <h4>
                 Best time: <p>{bestTime? milToTime(bestTime): ""}</p>

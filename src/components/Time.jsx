@@ -2,8 +2,7 @@ import React from "react";
 
 function Time(props){
     const [time, setTime]= React.useState(0)
-    const timeId= React.useRef();
-  
+    const timeId= React.useRef();  
   
     React.useEffect(()=>{
       if(props.isRunning){
@@ -15,10 +14,14 @@ function Time(props){
         clearInterval(timeId.current)
         timeId.current= null
 
-        if(!props.bestTime)
+        if(!props.bestTime){
+            props.toggleNewBest()
             localStorage.setItem("best", JSON.stringify(time))
-        else if(props.bestTime>time)
+        }
+        else if(props.bestTime>time){
+            props.toggleNewBest()
             localStorage.setItem("best", JSON.stringify(time))
+        }
       }
       
       return ()=>{
