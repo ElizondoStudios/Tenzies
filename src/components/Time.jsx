@@ -14,6 +14,11 @@ function Time(props){
       }else{
         clearInterval(timeId.current)
         timeId.current= null
+
+        if(!props.bestTime)
+            localStorage.setItem("best", JSON.stringify(time))
+        else if(props.bestTime>time)
+            localStorage.setItem("best", JSON.stringify(time))
       }
       
       return ()=>{
