@@ -10,7 +10,7 @@ function NewBest(props){
             <h2>New best time! 🥳</h2>
             <h3>{milToTime(parseInt(localStorage.getItem("best")))}</h3>
             <button
-             className="App--roll-dice"
+             className="App--UI-button"
              onClick={props.toggleNewBest}
             >Close</button>
         </div>
