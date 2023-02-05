@@ -27,7 +27,7 @@ body {
     /*dos filas en auto/ repetir(5 columnas, una fraccion)*/
   }
 
-  .App--roll-dice{
+  .App--UI-button{
     font-family: 'Karla';
     font-style: normal;
     font-weight: 700;
@@ -37,14 +37,21 @@ body {
     border: 0;
     border-radius: 5px;
 
-    width: 92px;
-    height: 36px;
-
     background-color: #5035FF;
     color: #FFFFFF;
 
     cursor: pointer;
   }
+
+    .roll-dice{
+      width: 92px;
+      height: 36px;
+    }
+
+    .start-game{
+      width: 92px;
+      height: 50px;
+    }
 
     .App--roll-dice:hover{
       background-color: #3725ac;
@@ -78,6 +85,7 @@ body {
 .Stats{
   display: flex;
   gap: 25px;
+  height: 16%;
 }
   .Stats>h4>p{
     display: inline-block;

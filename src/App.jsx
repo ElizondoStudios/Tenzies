@@ -14,10 +14,18 @@ function App() {
   const [rolls, setRolls]= React.useState(0);
 
   //Time
-  const [isRunning, setIsRunning]= React.useState(true);
+  const [isRunning, setIsRunning]= React.useState(false);
 
   //New Best splash screen
   const [newBest, setNewBest]=React.useState(false);
+
+  //Game Start
+  const [gameStart, setGameStart]= React.useState(false)
+
+  function startGame(){
+    setGameStart(true)
+    setIsRunning(true)
+  }
 
   function toggleNewBest(){
     setNewBest(prevNewBest => !prevNewBest)
@@ -73,30 +81,37 @@ function App() {
           <h1>
             Tenzies
           </h1>
-
           <p>Roll until all dice are the same. 
             Click each die to freeze it at its current value between rolls.
           </p>
         </div>
-        <Stats
-          rolls={rolls}
-          toggleNewBest={toggleNewBest}
-          isRunning={isRunning}
-        />
-        <div className="App--die">
-          {die.map(dice => 
-          <Dice 
-            key={dice.id} 
-            value={dice.value} 
-            isHeld={dice.isHeld}
-            toggleDice={()=>{toggleDice(dice.id)}}
-            />
-          )}
-        </div>
-          <button 
-            className="App--roll-dice"
-            onClick={!tenzies? rollDice: resetGame}
-          >{tenzies? "New Game": "Roll"}</button>
+
+        {!gameStart?
+          <button onClick={startGame} className="App--UI-button start-game">Start Game</button>
+          :
+          <>
+          <Stats
+            rolls={rolls}
+            toggleNewBest={toggleNewBest}
+            isRunning={isRunning}
+          />
+          <div className="App--die">
+            {die.map(dice => 
+            <Dice 
+              key={dice.id} 
+              value={dice.value} 
+              isHeld={dice.isHeld}
+              toggleDice={()=>{toggleDice(dice.id)}}
+              />
+            )}
+          </div>
+            <button 
+              className="App--UI-button roll-dice"
+              onClick={!tenzies? rollDice: resetGame}
+            >{tenzies? "New Game": "Roll"}</button>
+          </>
+        }
+
       </main>
     </div>
   )
